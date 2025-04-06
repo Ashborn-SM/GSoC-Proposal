@@ -1,0 +1,70 @@
+\chapter{Project Systems} \label{ch: project-systems}
+
+This entire project can be divided into 3 main components.
+
+\begin{itemize}
+	\item Application Window
+	\item Signal Processing Library
+	\item \ac{oot} modules
+\end{itemize}
+
+\section{Application Window}
+
+\begin{figure}[h]
+	\centering
+	\includesvg[scale=1]{images//app-window} % Rotates 90 degrees
+	\caption{Application Window and its sub-systems.}
+\end{figure}
+
+The application window acts as the main interface for the user, bringing together array configuration, visualization, simulation, and flowgraph generation all in a single environment.
+
+It will feature an intuitive \ac{gui} with controls like sliders, dropdowns, and text fields to allow users to easily set array parameters, visualize beam patterns etc. The window will also offer simulation capabilities for array processing algorithms and support automatic generation of flow graphs from user-defined settings that can be used in \acl{gr}.
+
+To streamline the workflow, the application window can be launched directly from within \ac{grc}, ensuring smooth integration with the existing GNU Radio framework.
+
+\section{Signal Processing Library}
+
+\begin{figure}[h]
+	\centering
+	\includesvg[scale=1]{images//sig-processing-lib} % Rotates 90 degrees
+	\caption{Signal Processing Library and its sub-systems.}
+\end{figure}
+
+
+The signal processing library forms the core component of the project, providing the computational backbone for array analysis and algorithm simulation.
+
+The library will include functions for steering vector generation, supporting a variety of array geometries and parameter configurations. This ensures flexibility and adaptability across different sensor array setups. Additionally, it will have in-built functions of various Beamforming and \ac{doa} estimation, allowing users to evaluate and compare different techniques within the same framework.
+
+To support meaningful analysis, the library will also provide tools to measure performance metrics of both the arrays and the implemented algorithms. These tools will be tightly integrated with the GUI and plotting modules, enabling quick simulation and visualization.
+
+\section{\ac{oot} Modules}
+
+\begin{figure} [h]
+	\centering
+	\includesvg[scale=1]{images//oot-modules} % Rotates 90 degrees
+	\caption{OOT Modules.}
+\end{figure}
+
+As part of the system’s integration with \acl{gr}, a set of custom \ac{oot} modules will be developed to extend the platform’s native functionality and provide a seamless interface between the graphical tool (application window) and \acf{grc}. These \ac{oot} modules are designed to support user-defined array configurations and processing algorithms by using them as reusable blocks within the GRC environment.
+
+Each block will encapsulate a specific array processing function, such as steering vector generation, beamforming, or direction-of-arrival (DoA) estimation, allowing users to incorporate these capabilities directly into their GNU Radio flowgraphs. The blocks will be implemented in C++ or Python, with proper XML code to ensure compatibility with the GRC graphical interface.
+
+This modular design enables users to prototype and validate their array processing pipelines quickly, while maintaining the flexibility to modify and expand the processing chain as needed.
+
+\section{System Integration}
+
+The integration phase brings together all the major components of the project into a functional system. At the heart of this integration lies the seamless interaction between the application window, signal processing library, and the custom \ac{oot} modules from \ac{gr}.
+
+\begin{figure}[H]
+	\centering
+	\includesvg[angle=90, scale=0.7]{images//project-systems} % Rotates 90 degrees
+	\caption{System block diagram.}
+\end{figure}
+
+The application window serves as the primary user interface, enabling users to intuitively configure sensor array parameters, select array processing algorithms, and visualize the resulting beam patterns or estimation outputs. It acts as the front end through which all system functionalities are accessed.
+
+Behind the scenes, the signal processing library performs the core computations. It houses essential algorithms for steering vector generation, Beamforming, and \ac{doa} estimation. The library is a separate entity common to the application window and the \ac{oot} modules and it is accessed through function calls.
+
+To support real-world deployment and SDR experimentation, the system includes a set of custom OOT modules for \ac{gr}. The application window can generate \ac{gr}-compatible flow graphs based on the user's settings, enabling a smooth transition from design and simulation to real-world implementation in \ac{gr}.
+
+Together, these components form a tightly integrated toolchain, from configuration and simulation to real-time execution and bridging the gap between intuitive design and SDR-based prototyping.

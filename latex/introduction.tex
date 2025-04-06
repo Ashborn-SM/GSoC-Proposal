@@ -1,0 +1,94 @@
+\chapter{Introduction} \label{ch: introduction}
+
+\section{Project Overview}
+
+This project aims to develop an open-source, interactive tool for designing and analyzing sensor arrays within \acf{gr}, it is inspired by MATLAB’s \href{https://in.mathworks.com/products/phased-array.html}{Phased Array System Toolbox} (more specifically: \href{https://in.mathworks.com/help/phased/ref/sensorarrayanalyzer-app.html}{Sensor Array Analyzer}). This \acs{gui}-based tool should allow users to configure various array parameters, visualize the array-factor in different plots, view performance characteristics and play around with popular Beamforming and \acf{doa} estimation algorithms.
+
+Once the design is complete, the tool should generate a compatible \ac{gr} flow graph, configured with the chosen array settings. This functionality bridges the gap between array design and real-time testing, empowering researchers and engineers to iterate and test their designs seamlessly in \ac{gr}.
+
+By creating this tool, the project seeks to provide the open-source community with a powerful, accessible alternative to proprietary software, lowering the barrier to entry for advanced array processing research and development.
+	
+\section{Motivation}
+
+When I first started as an intern, I was tasked with developing adaptive array algorithms. At the time, my understanding of signal processing was very limited, and working with multi-dimensional signal processing algorithms was really a daunting task. The first major hurdle was grasping the mathematical foundations and intuition behind the algorithms. After extensive effort, I was able to develop a good understanding of most concepts.
+
+The next challenge was implementation and verification. While searching for simulation tools, I found that MATLAB was the primary option, but being paid-license based, I was unable to use it. This left me with no choice but to develop everything from scratch. At that time, my programming experience was limited, making the process even more difficult. I looked online for array processing algorithm implementations to get a sense of how they were implemented. Although there were only a handful of resources available, I managed to find a couple of GitHub repositories and \href{https://pysdr.org/}{PySDR}, which proved to be invaluable. They helped me with signal generation, algorithm implementation, pattern visualization, and even understanding the underlying theory. However, they primarily focused on \acf{ula}, making it quite tricky to do the same for planar arrays. Through extensive study of textbooks and careful adaptation of available resources, I was eventually able to extend the simulation to planar array.
+
+While I gained a lot from developing everything from scratch, it was also time-intensive and prone to errors. Developing the core algorithm is one aspect, but implementing signal generation, visualization tools and all the other supporting tools, just adds significant overhead. This project aims to simplify these aspects, allowing researchers and engineers to focus on algorithm development rather than spending excessive time on auxiliary tasks.
+
+\section{Objective} \label{sec: objective}
+
+\begin{itemize}
+	\item \textbf{OBJ-1}: To develop an interactive graphical tool that enables a user to configure various parameters of a sensor array,  visualize the beam pattern of the array using different plotting methods, and analyze its performance metrics.
+	\item \textbf{OBJ-2}: The graphical tool should be able to simulate different array processing algorithms for various user-defined array configurations and parameters and provide immediate results.
+	\item \textbf{OBJ-3}: The tool should include a mechanism to convert the user-defined configurations into a valid \acl{gr} compatible flowgraph.
+	
+\end{itemize}
+
+\section{Milestones} \label{sec: milestones}
+
+\begin{itemize}
+	\item \textbf{MS-1}: Planning
+	\begin{itemize}
+		\item Connect with mentors and the community.
+		\item Iron out details of the project.
+		\item Setup work environment.
+	\end{itemize}
+	\item \textbf{MS-2}: \acf{gui}.
+	\begin{itemize}
+		\item Set up the GUI framework.
+		\item Implement user-friendly input controls.
+		\item Ensure smooth navigation and parameter configuration.
+	\end{itemize}
+	\item \textbf{MS-3}: Signal Processing Library.
+	\begin{itemize}
+		\item Implement a function for steering vector generation based on different parameters for a wide range of array configurations.
+		\item Develop a library of array processing algorithms in Beamforming and \ac{doa} estimation.
+		\item Create functions for measuring arrays and the algorithms performance.
+	\end{itemize}
+	\item \textbf{MS-4}: Development of \ac{oot} modules and flow graph generation.
+	\begin{itemize}
+		\item Create a set of customizable \ac{grc} blocks designed to meet diverse user settings.
+		\item Implement a functionality within the application window that allows the user to convert their settings to a \ac{grc} flowgraph in \acl{gr}.
+	\end{itemize}
+		\item \textbf{MS-5}: Integration.
+	\begin{itemize}
+		\item Develop a library for generating various types of plots.
+		\item Integrate the signal processing library, plotting library, \ac{gui} and the flowgraph generator with the application window.
+		\item Enable the window to be launched directly from within \ac{grc}.
+	\end{itemize}
+\end{itemize}
+
+\begin{center}
+	\captionof{table}{Objective - Milestone mapping.}
+	\begin{tabular}{|c|c|c|c|c|c|c|}
+		\hline
+		& MS-1 & MS-2 & MS-3 & MS-4 & MS-5 \\ \hline
+		OBJ-1 & 1    & 1    &  1    &     &   1         \\ \hline
+		OBJ-2 & 1    &      &  1    &     &   1         \\ \hline
+		OBJ-3 & 1    &      &       & 1   &   1    \\ \hline
+	\end{tabular}
+\end{center}
+
+\section{Document Structure}
+
+The remainder of this proposal is structured as follows:
+
+\begin{itemize}
+	
+	\item \textbf{Chapter \ref{ch: project-systems}}: Project Systems \\
+	\indent Describes the high-level system architecture. It details how the project is divided into multiple systems  components such as the application window, signal processing library, and \ac{oot} module and are structured to work together.
+	
+	\item \textbf{Chapter \ref{ch: application-window}}: Application Window \\
+	\indent Explains the graphical interface for the project. It gives an idea on how the \ac{ui} will look like and explains the different panes of the window. It also goes into the different types of plotting methods that are available.
+	
+	\item \textbf{Chapter \ref{ch: signal-processing-library}}: Signal Processing Library \\
+	\indent Details the development of core signal processing functions including steering vector generation, beamforming techniques, and DoA estimation algorithms. It also covers performance evaluation tools integrated within the library.
+	
+	\item \textbf{Chapter \ref{ch: oot-modules}}: \acf{oot} Modules \\
+	\indent Describes the implementation of custom \acl{gr} \ac{oot} blocks that expose array processing functionalities in the \ac{grc} environment. This chapter includes information on how these blocks are designed, parameterized, and linked with the GUI for automated flow graph generation.
+	
+\end{itemize}
+
+
+

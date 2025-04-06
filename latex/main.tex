@@ -1,0 +1,137 @@
+\documentclass[a4paper,12pt]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{titling}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{acro}
+\usepackage{csquotes}
+\usepackage{caption}
+\usepackage{svg}
+\usepackage{float}
+\usepackage{nomencl}
+\geometry{margin=1in}
+
+\setsvg{inkscape={"C:/Program Files/Inkscape/inkscape"}}
+
+\DeclareAcronym{grc}{
+	short=GRC,
+	long=GNU Radio Companion
+}
+
+\DeclareAcronym{ula}{
+	short=ULA,
+	long=Uniform Linear Array
+}
+
+\DeclareAcronym{oot}{
+	short=OOT,
+	long=Out-Of-Tree
+}
+
+\DeclareAcronym{doa}{
+	short=DoA,
+	long=Direction-of-Arrival
+}
+
+\DeclareAcronym{ura}{
+	short=URA,
+	long=Uniform Rectangular Array
+}
+
+\DeclareAcronym{uca}{
+	short=UCA,
+	long=Uniform Circular Array
+}
+
+\DeclareAcronym{gr}{
+	short=GR,
+	long=GNU Radio
+}
+
+\DeclareAcronym{mvdr}{
+	short=MVDR,
+	long=Minimum Variance Distortionless Response
+}
+
+\DeclareAcronym{lcmv}{
+	short=LCMV,
+	long=Linearly Constrained Minimum Variance
+}
+
+\DeclareAcronym{music}{
+	short=MUSIC,
+	long=MUltiple Signal Classification
+}
+
+\DeclareAcronym{gui}{
+	short=GUI,
+	long=Graphical User Interface
+}
+
+\DeclareAcronym{ui}{
+	short=UI,
+	long=User Interface
+}
+
+\begin{document}
+	
+	\begin{titlepage}
+		\centering
+		\vspace*{1cm}
+		
+		\Huge \textbf{Array Processing ToolBox}
+		
+		\vspace{0.5cm}
+		\Large gr-array
+		
+		\vspace{1.5cm}
+		\includegraphics[scale=0.3]{images//title_doa}
+		
+		\vspace{1.5cm}
+		\textbf{Author:} Rahul Rajeev Pillai
+		
+		\vfill
+		
+		\textbf{Date:} \today
+				
+	\end{titlepage}
+
+	\setcounter{page}{1}
+	\pagenumbering{roman}
+	
+	\include{abstract}
+	
+	\clearpage
+	\tableofcontents
+	\addcontentsline{toc}{chapter}{Table of Contents}
+	
+	\clearpage
+	\listoffigures
+	\addcontentsline{toc}{chapter}{List of Figures}
+	
+	\clearpage
+	\listoftables
+	\addcontentsline{toc}{chapter}{List of Tables}
+	
+	\clearpage
+	\printacronyms[sort=true, name=List of Abbreviations]
+	\addcontentsline{toc}{chapter}{List of Abbreviations}
+	
+	\clearpage
+	\setcounter{page}{1}
+	\pagenumbering{arabic}
+	
+	\include{introduction}
+	\include{project-systems}
+	\include{application-window}
+	\include{signal-processing-lib}
+	\include{oot-modules}
+	\include{conclusion}
+	
+\end{document}
