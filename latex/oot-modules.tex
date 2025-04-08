@@ -1,0 +1,29 @@
+\chapter{\acf{oot} Modules} \label{ch: oot-modules}
+
+\section{Array Response}
+
+This GNU Radio block models the effect of a sensor array receiving signals from one or more sources. It takes multiple incoming signals (each representing the signal received at a sensor element), applies phase shifts respective to the element and combines them. The phase shifts are computed based on a steering vector, which encodes the spatial direction of the incoming signal relative to the array geometry. The block outputs
+$N$ phase-shifted signals, one for each array element, representing the spatially sampled wavefront.
+
+\section{Steering Vector}
+
+This block calculates the complex phase shifts associated with a particular \ac{doa}. Given the array geometry, the number of elements, the inter-element spacing, angle of arrival and the frequency, it outputs a vector of phase shifts. This block is used by the Array Response and Beamforming block. This block can either be static (fixed angle) or dynamic (configurable at runtime).
+
+\section{Beamforming}
+
+The beamforming block receives the $N$ signals (already phase-aligned according to the assumed direction of arrival) and applies spatial filtering techniques to enhance signals arriving from a desired direction while suppressing interference and noise from others. It can support different algorithms such as,
+
+\begin{itemize}
+	\item \ac{mvdr}
+	\item \ac{lcmv}
+\end{itemize}
+
+
+\section{\acf{doa} Estimation}
+
+This block estimates the directions from which signals are arriving using the $N$ input signals from the array response block and gives the estimated directions as a message. It supports popular algorithms like,
+
+\begin{itemize}
+	\item Beamscan
+	\item \ac{mvdr}
+\end{itemize}

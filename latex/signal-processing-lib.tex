@@ -1,0 +1,79 @@
+\chapter{Signal Processing Library} \label{ch: signal-processing-library}
+
+\section{Array}
+
+\begin{center}
+	\renewcommand{\arraystretch}{1.5}
+	\captionof{table}{Array configuration and its steering vector calculation.}
+	\begin{tabular}{|c|c|}
+		\hline
+		Array & Steering Vector  \\ \hline
+		\acl{ula}   & $\text{v}(\theta) = e^{-\text{j}2\pi \frac{\text{d}}{\lambda} n\sin(\theta)}$          \\ \hline
+		\acl{ura}   & $\text{v}(\theta, \phi) = e^{-\text{j}2\pi \frac{1}{\lambda}( n\text{d}_x\sin(\theta)\cos(\phi) + m\text{d}_y\sin(\theta)\sin(\phi))}$                 \\ \hline
+	\end{tabular}
+\end{center}
+
+
+where,
+\begin{itemize}
+	\item d - inter-element spacing in m.
+	\item $\lambda$ - wavelength of the signal.
+	\item $\theta$ - elevation angle in rad.
+	\item $\phi$ - azimuth angle in rad.
+	\item $\text{d}_x$ - inter-element spacing in x-axis (array normal is z-axis).
+	\item $\text{d}_y$ - inter-element spacing in y-axis (array normal is z-axis).
+	\item $n$ - index of the element in x-axis.
+	\item $m$ - index of the element in y-axis.
+	\item $\text{v}(\theta)$, $\text{v}(\theta, \phi)$ - steering vectors for \ac{ula} and \ac{ura} respectively.
+ \end{itemize}
+
+\section{Beamforming algorithm}
+
+\begin{center}
+	\renewcommand{\arraystretch}{1.5}
+	\captionof{table}{Beamforming algorithm and its weights computation.}
+	\begin{tabular}{|c|c|}
+		\hline
+		Algorithm & Weight computation  \\ \hline
+		\acl{mvdr}   & $\text{w} = \frac{\text{R}^{-1} \text{v}}{\text{v}^{\text{H}} \text{R}^{-1} \text{v}}$          \\ \hline
+		\acl{lcmv}   & $\text{w} = \frac{\text{R}^{-1} \text{C}}{\text{C}^{\text{H}} \text{R}^{-1} \text{C}} \delta$                 \\ \hline
+	\end{tabular}
+\end{center}
+
+where, 
+
+\begin{itemize}
+	\item w - is the weight vector of the algorithm.
+	\item $\text{R}^{-1}$ - inverse covariance matrix.
+	\item v - steering vector (either from \ac{ula} or \ac{ura})
+	\item C - constraint matrix.
+	$$ \text{C} = \begin{bmatrix}
+		\text{v}_0, \text{v}_1, \hdots \text{v}_i
+	\end{bmatrix}$$ 
+	v\textsubscript{$i$} refers to steering vector based on different directions. C contains all possible steering vector that are to be considered.
+	\item $\delta$ - desired response matrix
+	$$ \delta = \begin{bmatrix}
+		1, 1, 0, \hdots 1
+	\end{bmatrix} $$
+	contains the desired response corresponding to the steering vector. 1 means beam and 0 means null.
+\end{itemize}
+
+\section{\ac{doa} Esimation algorihtm}
+
+\begin{center}
+	\renewcommand{\arraystretch}{1.5}
+	\captionof{table}{\ac{doa} algorithm and its spectrum computation.}
+	\begin{tabular}{|c|c|}
+		\hline
+		Algorithm & Spectrum computation  \\ \hline
+		Beamscan   & $\text{P}(\theta, \phi) = \text{v}^\text{H} \text{R} \text{v}$          \\ \hline
+		\acl{mvdr}   & $\text{P}(\theta, \phi) = \frac{1}{\text{v}^{\text{H}} \text{R}^{-1} \text{v}} $              \\ \hline
+	\end{tabular}
+\end{center}
+
+where,
+
+\begin{itemize}
+	\item $\text{P}(\theta, \phi)$ - refers to the power spectrum.
+	 
+\end{itemize}
